@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --base: #333333;
+  --main:#BBBBBB;
+  --accent: #CCCCCC;
+  --accent-2: #DDDDDD;
+  --accent-3: #eeeeee; 
+}
+
+header {
+  text-align: center;
+  background-color: var(--base);
+  color: var(--accent-2);
+  font-family: monospace;
+  font-size: 2rem;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--main);
+}
+
+footer {
+  text-align: center;
+  background-color: var(--base);
+  color: var(--accent-2);
+  font-family: monospace;
+  font-size: 2rem;
+}
