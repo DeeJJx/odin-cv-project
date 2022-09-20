@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import General from './components/General';
-import uniqid from "uniqid";
+import Main from './components/Main';
 
 class App extends Component {
   constructor(props){
@@ -16,7 +15,7 @@ class App extends Component {
           <h1>CV Builder</h1>
         </header>
         <main>
-          <General />
+          <Main />
         </main>
         <footer>
           This is the footer
