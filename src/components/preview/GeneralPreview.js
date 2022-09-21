@@ -13,7 +13,7 @@ class GeneralPreview extends Component {
       <div className="general-preview section">
         <section>
         {infoValues.map((info, key) => {
-            return <div key={key}>{info}</div>})}
+            return <div key={key} id={key} className="output">{info}</div>})}
         </section>
       </div>
     );

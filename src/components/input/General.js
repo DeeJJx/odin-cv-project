@@ -15,6 +15,8 @@ class General extends Component {
             town: '',
          },
         }
+        this.editEdit = this.editEdit.bind(this);
+        this.editSubmit = this.editSubmit.bind(this);
     }
 
     onTrigger = (e) => {
@@ -27,11 +29,28 @@ class General extends Component {
       this.setState({ generalInfo: { ...this.state.generalInfo, [e.target.name]: e.target.value } });
     }
 
+    editSubmit = (e) => {
+      let edit = document.getElementById("edit");
+      let fieldset = document.getElementById("general-fieldset");
+      e.target.classList.toggle("hidden");
+      edit.classList.toggle("hidden");
+      fieldset.setAttribute("disabled", "disabled");
+    }
+
+    editEdit = (e) => {
+      let submit = document.getElementById("submit");
+      let fieldset = document.getElementById("general-fieldset");
+      e.target.classList.toggle("hidden");
+      submit.classList.toggle("hidden");
+      fieldset.removeAttribute("disabled")
+    }
+
     render() {
         const { firstName, lastName, email, addressOne, addressTwo, postcode, town } = this.props;
         return <div id="general">
         <h3>General Information</h3>
         <form onSubmit={this.onTrigger}>
+          <fieldset id="general-fieldset">
             <input 
             type="text"
             name="firstName"
@@ -74,7 +93,9 @@ class General extends Component {
             placeholder="Town/City"
             value={town}
             onChange={this.handleChange} />
-          <input type="submit" value="Submit" />
+            </fieldset>
+          <input type="submit" value="Submit" onClick={this.editSubmit} id="submit"/>
+          <button onClick={this.editEdit} className="hidden" id="edit">Edit</button>
         </form>
      </div>;
     }
