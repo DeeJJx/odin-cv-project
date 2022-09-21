@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import Education from './input/Education';
 import General from './input/General';
 import GeneralPreview from './preview/GeneralPreview';
+import EducationPreview from './preview/EducationPreview';
 
 class Main extends Component {
   constructor(props){
@@ -18,15 +20,23 @@ class Main extends Component {
             postcode: '',
             town: '',
          },
+         educationInfo: {
+          universityName: '',
+          courseTitle: '',
+          startDate: '',
+          endDate: '',
+      },
       };
   }
 
-  generalFormChange = (e) => {
+
+  //Don't think is necessary to use form change in main & in components
+/*   generalFormChange = (e) => {
     console.log(e.target.value)
     this.setState({
         [e.target.name]: e.target.value,
     })
-}
+} */
 
 handleCallback = (childData) => {
   let childDataValues = Object.values(childData);
@@ -55,12 +65,43 @@ handleSubmit = (e) => {
     }))
   }
 
+  handleCallbackEducation = (childData) => {
+    let childDataValues = Object.values(childData);
+    this.setState({
+      educationInfo:
+        {
+          universityName : childDataValues[0],
+          courseTitle : childDataValues[1],
+          startDate: childDataValues[2],
+          endDate: childDataValues[3],
+        }
+      });
+    }
+
+
+  handleSubmitEducation = (e) => {
+    e.preventDefault();
+    console.log("fired")
+    this.setState(prevState => ({
+      Education: {
+        ...prevState.Education,
+        [e.target.name]: e.target.value, 
+      }
+    }))
+  }
+
+  //Gotta create new handle
+
   render() {
     return (
       <div className="main">
         <main>
-          <General parentCallback={this.handleCallback} /*generalInfo={this.state.GeneralInfo}*/ />
+          <div className="input-div">
+              <General parentCallback={this.handleCallback} /*generalInfo={this.state.GeneralInfo}*/ />
+              <Education parentCallback={this.handleCallbackEducation}/>
+          </div>
           <GeneralPreview info={this.state.generalInfo} />
+          <EducationPreview info={this.state.educationInfo} />
         </main>
       </div>
     );
