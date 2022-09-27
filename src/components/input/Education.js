@@ -9,7 +9,8 @@ class Education extends Component {
                 courseTitle: '',
                 startDate: '',
                 endDate: '',
-            }
+            },
+            educationCounter: 1,
         }
     }
 
@@ -37,6 +38,27 @@ class Education extends Component {
         e.preventDefault();
         this.props.parentCallback(this.state.educationInfo);
       };
+
+      //This only adds 1 new section to component state
+      addSection = () => {
+        this.setState((prevState) => ({ 
+          educationCounter: prevState.educationCounter + 1 
+          
+       }));
+       
+
+        // for(let i=0;i< this.state.educationCounter;i++){
+        //   let i = {
+        //     universityName: '1',
+        //     courseTitle: '2',
+        //     startDate: '3',
+        //     endDate: '4',
+        //   }
+        // this.setState({ i });
+        // }
+      };
+
+      //Change render so it renders by mapping through component state
 
 
     render() {
@@ -75,6 +97,8 @@ class Education extends Component {
             <input type="submit" value="Submit" onClick={this.editSubmit} id="submit-education"/>
             <button onClick={this.editEdit} className="hidden" id="edit-education">Edit</button>
         </form>
+        <button onClick={this.addSection} id="add-section">Add</button>
+        <button onClick = {this.removeSection} id="remove-section">Remove</button>
     </div>;
     }
 }
